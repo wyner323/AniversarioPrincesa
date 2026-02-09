@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Feliz Aniversário, Minha Princesa</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   
   <style>
     body {
@@ -18,39 +18,103 @@
       overflow-x: hidden;
     }
 
-    .hearts { position: fixed; inset: 0; pointer-events: none; z-index: 1; }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(255,182,193,0.4) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hearts { position: fixed; inset: 0; pointer-events: none; z-index: 2; }
     .heart { position: absolute; font-size: 1.8rem; opacity: 0; animation: fall linear forwards; }
     @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; } 20% { opacity: 0.9; } 100% { transform: translateY(110vh) rotate(1080deg); opacity: 0; } }
 
     .container { position: relative; z-index: 10; padding: 60px 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    h1 { font-family: 'Playfair Display', serif; font-size: 4.2rem; color: #c2185b; margin-bottom: 1.5rem; }
-    .photo { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 10px solid white; box-shadow: 0 10px 35px rgba(194,24,91,0.25); margin: 30px 0; }
-    .message { max-width: 720px; font-size: 1.35rem; line-height: 1.7; color: #5e1f44; }
-    .message p { margin: 1.4rem 0; opacity: 0; transform: translateY(30px); animation: appear 1s ease-out forwards; }
+    h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; color: #c2185b; margin-bottom: 2rem; position: relative; }
+
+    .decorative-line {
+      position: relative;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 50px;
+    }
+
+    .decorative-line::before,
+    .decorative-line::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 100px;
+      height: 1.5px;
+      background: linear-gradient(to right, transparent, #ff69b4, transparent);
+    }
+
+    .decorative-line::before { left: -120px; }
+    .decorative-line::after { right: -120px; }
+
+    .photo {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 12px solid white;
+      box-shadow: 0 15px 40px rgba(194,24,91,0.3);
+      margin: 40px 0;
+    }
+
+    .message {
+      max-width: 760px;
+      font-size: 1.4rem;
+      line-height: 1.85;
+      color: #5e1f44;
+      padding: 0 20px;
+    }
+
+    .message p {
+      margin: 1.6rem 0;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: appear 1.2s ease-out forwards;
+    }
+
     @keyframes appear { to { opacity: 1; transform: translateY(0); } }
+
     .message p:nth-child(1) { animation-delay: 0.8s; }
-    .message p:nth-child(2) { animation-delay: 1.3s; }
-    .message p:nth-child(3) { animation-delay: 1.8s; }
-    .message p:nth-child(4) { animation-delay: 2.3s; }
-    .message p:nth-child(5) { animation-delay: 2.8s; }
+    .message p:nth-child(2) { animation-delay: 1.4s; }
+    .message p:nth-child(3) { animation-delay: 2.0s; }
+    .message p:nth-child(4) { animation-delay: 2.6s; }
+    .message p:nth-child(5) { animation-delay: 3.2s; }
 
     button {
       background: #d81b60;
       color: white;
       border: none;
-      padding: 14px 32px;
-      font-size: 1.2rem;
+      padding: 16px 36px;
+      font-size: 1.25rem;
       border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 6px 20px rgba(216,27,96,0.3);
+      box-shadow: 0 8px 25px rgba(216,27,96,0.4);
       transition: all 0.3s;
+      margin-top: 20px;
     }
-    button:hover { background: #ad1457; transform: translateY(-3px); }
+
+    button:hover {
+      background: #ad1457;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(216,27,96,0.5);
+    }
 
     @media (max-width: 600px) {
-      h1 { font-size: 3rem; }
-      .photo { width: 180px; height: 180px; }
-      .message { font-size: 1.2rem; }
+      h1 { font-size: 3.2rem; }
+      .photo { width: 190px; height: 190px; border-width: 10px; margin: 30px auto; }
+      .message { font-size: 1.25rem; line-height: 1.7; }
+      .decorative-line::before, .decorative-line::after { width: 60px; }
+      .decorative-line::before { left: -80px; }
+      .decorative-line::after { right: -80px; }
+      .container { padding: 40px 15px; }
+      button { padding: 18px 40px; font-size: 1.3rem; }
     }
   </style>
 </head>
@@ -61,24 +125,24 @@
   <div class="container">
     <h1>Feliz Aniversário, Minha Princesa ❤️</h1>
 
-    <!-- COLOQUE O LINK DA FOTO AQUI -->
-    <img class="photo" src="https://i.imgur.com/SUA-FOTO-AQUI.jpg" alt="Nós dois">
+    <img class="photo" src="https://github.com/wyner323/AniversarioPrincesa/raw/main/WhatsApp%20Image%202026-02-09%20at%2009.19.31.jpeg" alt="Minha princesa">
 
-    <div class="message">
-      <p>Hoje celebro você, a pessoa que transformou meus dias comuns em algo extraordinário.</p>
-      <p>Seu sorriso é meu refúgio, sua voz meu lugar favorito, e seu jeito de ser o motivo pelo qual acredito no amor de verdade.</p>
-      <p>Você não é apenas parte da minha vida… você é a parte mais bonita, mais suave e mais forte dela.</p>
-      <p>Obrigado por escolher me amar, por me ensinar o que é cuidar de alguém com o coração inteiro.</p>
-      <p>Que este novo ciclo te traga tudo o que você merece e que eu possa estar ao seu lado em cada passo dele. Te amo, hoje e sempre.</p>
+    <div class="decorative-line">
+      <div class="message">
+        <p>Hoje celebro você — a pessoa que transformou meus dias comuns em algo extraordinário.</p>
+        <p>Seu sorriso é meu refúgio, sua voz meu lugar favorito, e seu jeito de ser o motivo pelo qual acredito no amor de verdade.</p>
+        <p>Você não é apenas parte da minha vida… você é a parte mais bonita, mais suave e mais forte dela.</p>
+        <p>Obrigado por escolher me amar, por me ensinar o que é cuidar de alguém com o coração inteiro.</p>
+        <p>Que este novo ciclo te traga tudo o que você merece — e que eu possa estar ao seu lado em cada passo dele. Te amo, hoje e sempre.</p>
+      </div>
     </div>
 
     <div class="music">
-      <p style="margin: 30px 0; font-size: 1.15rem;">Quando quiser, aperta pra tocar nossa música:</p>
+      <p style="margin: 40px 0 20px; font-size: 1.2rem;">Quando quiser sentir ainda mais amor...</p>
       <button onclick="document.getElementById('audioPlayer').play()">Tocar nossa música</button>
 
       <audio id="audioPlayer" loop style="display: none;">
         <source src="nossa-musica.mp3.mp4" type="audio/mp4">
-        Seu navegador não suporta áudio.
       </audio>
     </div>
   </div>
@@ -91,11 +155,11 @@
       heart.style.left = Math.random() * 100 + 'vw';
       heart.style.animationDuration = (10 + Math.random() * 15) + 's';
       heart.style.animationDelay = Math.random() * 6 + 's';
-      heart.style.fontSize = (1.2 + Math.random() * 1.6) + 'rem';
+      heart.style.fontSize = (1.4 + Math.random() * 1.6) + 'rem';
       document.getElementById('hearts').appendChild(heart);
-      setTimeout(() => heart.remove(), 20000);
+      setTimeout(() => heart.remove(), 25000);
     }
-    setInterval(createHeart, 500);
+    setInterval(createHeart, 450);
   </script>
 
 </body>
