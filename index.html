@@ -4,80 +4,166 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Feliz Aniversário, Minha Princesa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  
   <style>
     body {
       margin: 0;
       min-height: 100vh;
       background: linear-gradient(135deg, #fdf2f8, #f8d1e5);
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: 'Poppins', sans-serif;
       color: #4a1a3c;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 1.8rem;
+      opacity: 0;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.9; }
+      100% { transform: translateY(110vh) rotate(1080deg); opacity: 0; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      padding: 60px 20px;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 2rem;
     }
+
     h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.2rem;
       color: #c2185b;
-      font-size: 3.5rem;
       margin-bottom: 1.5rem;
     }
-    .photo-frame {
+
+    .photo {
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      overflow: hidden;
-      border: 10px solid white;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      margin: 2rem 0;
-    }
-    .photo-frame img {
-      width: 100%;
-      height: 100%;
       object-fit: cover;
+      border: 10px solid white;
+      box-shadow: 0 10px 35px rgba(194,24,91,0.25);
+      margin: 30px 0;
     }
+
     .message {
-      max-width: 700px;
-      font-size: 1.3rem;
+      max-width: 720px;
+      font-size: 1.35rem;
       line-height: 1.7;
       color: #5e1f44;
     }
+
     .message p {
-      margin: 1.2rem 0;
+      margin: 1.4rem 0;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: appear 1s ease-out forwards;
     }
+
+    @keyframes appear {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message p:nth-child(1) { animation-delay: 0.8s; }
+    .message p:nth-child(2) { animation-delay: 1.3s; }
+    .message p:nth-child(3) { animation-delay: 1.8s; }
+    .message p:nth-child(4) { animation-delay: 2.3s; }
+    .message p:nth-child(5) { animation-delay: 2.8s; }
+
     .music {
-      margin-top: 3rem;
+      margin-top: 50px;
+    }
+
+    button {
+      background: #d81b60;
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(216,27,96,0.3);
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background: #b71c1c;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 3rem; }
+      .photo { width: 180px; height: 180px; }
+      .message { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
 
-  <h1>Feliz Aniversário, Minha Princesa ❤️</h1>
+  <div class="hearts" id="hearts"></div>
 
-  <!-- Coloque sua foto aqui -->
-  <div class="photo-frame">
-    <img src="https://i.imgur.com/SUA-FOTO-AQUI.jpg" alt="Vocês dois">
+  <div class="container">
+    <h1>Feliz Aniversário, Minha Princesa ❤️</h1>
+
+    <!-- COLOQUE O LINK DA FOTO AQUI -->
+    <img class="photo" src="https://i.imgur.com/SUA-FOTO-AQUI.jpg" alt="Nós dois">
+
+    <div class="message">
+      <p>Hoje celebro você — a pessoa que transformou meus dias comuns em algo extraordinário.</p>
+      <p>Seu sorriso é meu refúgio, sua voz meu lugar favorito, e seu jeito de ser o motivo pelo qual acredito no amor de verdade.</p>
+      <p>Você não é apenas parte da minha vida… você é a parte mais bonita, mais suave e mais forte dela.</p>
+      <p>Obrigado por escolher me amar, por me ensinar o que é cuidar de alguém com o coração inteiro.</p>
+      <p>Que este novo ciclo te traga tudo o que você merece — e que eu possa estar ao seu lado em cada passo dele. Te amo, hoje e sempre.</p>
+    </div>
+
+    <div class="music">
+      <p style="margin: 30px 0; font-size: 1.15rem;">Quando quiser, aperta pra tocar nossa música:</p>
+      <button onclick="document.getElementById('player').src = document.getElementById('player').src.replace('autoplay=0','autoplay=1')">Tocar É Amor - Jorge & Mateus</button>
+
+      <iframe id="player" width="0" height="0" style="border:none;"
+        src="https://www.youtube.com/embed/t1hfqfdmcD8?autoplay=0&loop=1&playlist=t1hfqfdmcD8&enablejsapi=1"
+        allow="autoplay; encrypted-media"></iframe>
+    </div>
   </div>
 
-  <!-- A mensagem está aqui, bem visível -->
-  <div class="message">
-    <p>Hoje celebro você — a pessoa que transformou meus dias comuns em algo extraordinário.</p>
-    <p>Seu sorriso é meu refúgio, sua voz meu lugar favorito, e seu jeito de ser o motivo pelo qual acredito no amor de verdade.</p>
-    <p>Você não é apenas parte da minha vida… você é a parte mais bonita, mais suave e mais forte dela.</p>
-    <p>Obrigado por escolher me amar, por me ensinar o que é cuidar de alguém com o coração inteiro.</p>
-    <p>Que este novo ciclo te traga tudo o que você merece — e que eu possa estar ao seu lado em cada passo dele. Te amo, hoje e sempre.</p>
-  </div>
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = ['❤️','💗','💕','💖','🩷','💞','💓','💝'][Math.floor(Math.random()*8)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (10 + Math.random() * 15) + 's';
+      heart.style.animationDelay = Math.random() * 6 + 's';
+      heart.style.fontSize = (1.2 + Math.random() * 1.6) + 'rem';
+      document.getElementById('hearts').appendChild(heart);
+      setTimeout(() => heart.remove(), 20000);
+    }
 
-  <div class="music">
-    <p style="font-size: 1.2rem; margin: 2rem 0;">Nossa música:</p>
-    <iframe width="100%" height="100" 
-      src="https://www.youtube.com/embed/t1hfqfdmcD8?autoplay=0" 
-      title="É Amor - Jorge & Mateus" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen></iframe>
-  </div>
+    setInterval(createHeart, 500);
+  </script>
 
 </body>
 </html>
