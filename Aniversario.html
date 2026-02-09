@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feliz Aniversário, Minha Princesa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fdf2f8 0%, #fae1ee 50%, #f8d1e5 100%);
+      color: #4a1a3c;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .hearts-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 1.4rem;
+      color: #e91e63;
+      opacity: 0;
+      animation: fallHeart linear forwards;
+      will-change: transform, opacity;
+    }
+
+    @keyframes fallHeart {
+      0%   { transform: translateY(-15vh) scale(0.6) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.9; }
+      100% { transform: translateY(110vh) scale(1.1) rotate(720deg); opacity: 0; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1.5rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 8vw, 5.5rem);
+      font-weight: 700;
+      color: #c2185b;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1.4s ease-out forwards 0.4s;
+    }
+
+    .photo-frame {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 12px solid white;
+      box-shadow: 0 12px 40px rgba(200,24,91,0.22);
+      margin: 2.5rem auto;
+      opacity: 0;
+      transform: scale(0.85);
+      animation: fadeUp 1.6s ease-out forwards 0.8s;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .message {
+      max-width: 720px;
+      font-size: 1.28rem;
+      line-height: 1.8;
+      color: #5e1f44;
+      opacity: 0;
+    }
+
+    .message p {
+      margin: 1.4rem 0;
+      opacity: 0;
+      transform: translateY(25px);
+      animation: fadeUp 1.2s ease-out forwards;
+    }
+
+    .message p:nth-child(1) { animation-delay: 1.4s; }
+    .message p:nth-child(2) { animation-delay: 1.7s; }
+    .message p:nth-child(3) { animation-delay: 2.0s; }
+    .message p:nth-child(4) { animation-delay: 2.3s; }
+    .message p:nth-child(5) { animation-delay: 2.6s; }
+
+    .music-area {
+      margin-top: 3.5rem;
+      opacity: 0;
+      animation: fadeUp 1.2s ease-out forwards 3s;
+    }
+
+    .music-area button {
+      background: #d81b60;
+      color: white;
+      border: none;
+      padding: 0.9rem 2.2rem;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(216,27,96,0.35);
+      transition: all 0.3s ease;
+    }
+
+    .music-area button:hover {
+      background: #ad1457;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(216,27,96,0.45);
+    }
+
+    .hidden-player {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 3.4rem; }
+      .photo-frame { width: 200px; height: 200px; border-width: 10px; }
+      .message { font-size: 1.15rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hearts-container" id="hearts"></div>
+
+  <div class="container">
+    <h1>Feliz Aniversário, Minha Princesa</h1>
+
+    <!-- COLOQUE O LINK DA FOTO AQUI ↓ -->
+    <div class="photo-frame">
+      <img src="https://i.imgur.com/SUA-FOTO-AQUI.jpg" alt="Nós dois">
+    </div>
+
+    <div class="message">
+      <p>Hoje celebro você — a pessoa que transformou meus dias comuns em algo extraordinário.</p>
+      <p>Seu sorriso é meu refúgio, sua voz meu lugar favorito, e seu jeito de ser o motivo pelo qual acredito no amor de verdade.</p>
+      <p>Você não é apenas parte da minha vida… você é a parte mais bonita, mais suave e mais forte dela.</p>
+      <p>Obrigado por escolher me amar, por me ensinar o que é cuidar de alguém com o coração inteiro.</p>
+      <p>Que este novo ciclo te traga tudo o que você merece — e que eu possa estar ao seu lado em cada passo dele. Te amo, hoje e sempre.</p>
+    </div>
+
+    <div class="music-area">
+      <p style="margin-bottom: 1.2rem; font-size: 1.1rem; color: #6d1f4f;">
+        Quando estiver pronta, toca nossa música…
+      </p>
+      <button onclick="playMusic()">Tocar música</button>
+
+      <div class="hidden-player" id="player">
+        <iframe id="ytplayer" width="0" height="0" 
+          src="https://www.youtube.com/embed/t1hfqfdmcD8?enablejsapi=1&autoplay=0&loop=1&playlist=t1hfqfdmcD8"
+          frameborder="0" allow="autoplay; encrypted-media"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      
+      const hearts = ['❤️','💗','💕','💖','🩷','💞','💓','💝'];
+      heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+      
+      const left = Math.random() * 100;
+      heart.style.left = left + 'vw';
+      
+      const duration = 12 + Math.random() * 14;
+      heart.style.animationDuration = duration + 's';
+      
+      const delay = Math.random() * 8;
+      heart.style.animationDelay = delay + 's';
+      
+      const size = 1 + Math.random() * 1.4;
+      heart.style.fontSize = size + 'rem';
+      
+      document.getElementById('hearts').appendChild(heart);
+      
+      setTimeout(() => heart.remove(), duration * 1000 + 2000);
+    }
+
+    setInterval(createHeart, 400 + Math.random() * 400);
+
+    function playMusic() {
+      const player = document.getElementById('ytplayer');
+      if (player) {
+        player.src = player.src.replace('autoplay=0', 'autoplay=1');
+      }
+    }
+  </script>
+
+</body>
+</html>
